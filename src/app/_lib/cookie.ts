@@ -15,7 +15,7 @@ export const AddProduct = (data : cart_data) => {
     }
     else
     {
-        cookies().set('data', JSON.stringify(data));
+        cookies().set('data', JSON.stringify([data]));
     }
 }
 
