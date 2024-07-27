@@ -1,5 +1,6 @@
-import React from 'react'
-import StandardTable from '../_components/Table'
+"use client"
+import React, { useState } from 'react'
+import StandardTable from './ProductTable'
 import { product_data } from '../_utils/types'
 
 const tmp_data: product_data[] = [
@@ -54,9 +55,15 @@ const tmp_data: product_data[] = [
 ]
 
 export default function page() {
+
+    const [productData, setProductData] = useState<product_data[]>(tmp_data)
+    const update_productData = (data: product_data[]): void => {
+        setProductData(data)
+    }
+
     return (
         <div className='bg-gray-100'>
-            <StandardTable data={tmp_data}/>
+            <StandardTable data={productData} update_productData={update_productData} />
         </div>
     )
 }

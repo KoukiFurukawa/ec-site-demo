@@ -3,15 +3,17 @@ import { AddProduct } from '../_lib/cookie'
 import { cart_data } from '../_utils/types'
 
 type Props = {
+    index: number
     name : string,
     disc : string | null,
     stock  : number,
     price: number,
     image_path: string | null,
-    toggleModal : () => void
+    toggleModal : () => void,
+    update_data: (index: number, stock: number) => void,
 }
 
-const BuyModal: React.FC<Props> = ({name, disc, stock, price, image_path, toggleModal}) => {
+const BuyModal: React.FC<Props> = ({index, name, disc, stock, price, image_path, toggleModal, update_data}) => {
 
     const [count, setCount] = useState<number>(1)
 
@@ -23,6 +25,7 @@ const BuyModal: React.FC<Props> = ({name, disc, stock, price, image_path, toggle
             price: price * count
         }
         await AddProduct(add_data)
+        update_data(index, stock - count)
         toggleModal()
     }
 

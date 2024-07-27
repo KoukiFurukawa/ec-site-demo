@@ -19,6 +19,15 @@ export const AddProduct = (data : cart_data) => {
     }
 }
 
+export const TakeoutData = (): cart_data[] => {
+    const saved_data = cookies().get("data");
+    let cart_data: cart_data[] = []
+    if (saved_data)
+    {
+        cart_data = JSON.parse(saved_data.value)
+    }
+    return cart_data
+}
 
 export const DeleteCookies = () =>
 {
