@@ -15,6 +15,7 @@ const StandardTable: React.FC<Props> = ({ data }) => {
     const [disc, setDisc] = useState<string | null>("")
     const [price, setPrice] = useState<number>(0)
     const [stock, setStock] = useState<number>(-1)
+    const [imagePath, setImagePath] = useState<string | null>(null);
 
     const toggleModal = () => {
         if (isShow)
@@ -61,6 +62,7 @@ const StandardTable: React.FC<Props> = ({ data }) => {
                         setDisc(res.description)
                         setPrice(res.price)
                         setStock(res.stock)
+                        setImagePath(res.image_path)
                         toggleModal()
                     }}>カートに追加</button></td>
                 </tr>
@@ -69,7 +71,7 @@ const StandardTable: React.FC<Props> = ({ data }) => {
             </tbody>
         </table>
     </div>
-    { isShow && <BuyModal toggleModal={toggleModal} name={name} disc={disc} stock={stock} price={price}/>}
+    { isShow && <BuyModal toggleModal={toggleModal} name={name} disc={disc} stock={stock} price={price} image_path={imagePath}/>}
     </div>
     )
 }
