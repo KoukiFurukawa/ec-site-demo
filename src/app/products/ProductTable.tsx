@@ -16,7 +16,7 @@ const StandardTable: React.FC<Props> = ({ data, update_productData }) => {
     const [disc, setDisc] = useState<string | null>("")
     const [price, setPrice] = useState<number>(0)
     const [stock, setStock] = useState<number>(-1)
-    const [imagePath, setImagePath] = useState<string | null>(null);
+    const [imagePath, setImagePath] = useState<string>("");
     const [index, setIndex] = useState<number>(-1)
 
     const toggleModal = () => {
@@ -31,7 +31,7 @@ const StandardTable: React.FC<Props> = ({ data, update_productData }) => {
 
     return (
     <div className="pt-16">
-    <div className="m-[auto] whitespace-nowrap overflow-auto h-[80vh] w-[90%] top-0 pt-8 bg-white">
+    <div className="m-[auto] whitespace-nowrap overflow-auto h-[90vh] w-[90%] top-0 bg-white">
         <table className="table-auto w-[100%]">
             <thead className=" sticky top-0 z-10 ">
             <tr className="bg-gray-200">
@@ -52,7 +52,7 @@ const StandardTable: React.FC<Props> = ({ data, update_productData }) => {
                     <td className=" px-4 py-2 sticky left-0 z-[2] bg-slate-100 border ">
                         {res.ID}
                     </td>
-                    <td><img src="" alt="" /></td>
+                    <td><img src={res.image_path} alt="" className="h-[150px]" /></td>
                     <td className=" px-4 py-2 border ">{res.name}</td>
                     <td className=" px-4 py-2 border ">{res.category}</td>
                     <td className=" px-4 py-2 border ">{res.manufacturer}</td>

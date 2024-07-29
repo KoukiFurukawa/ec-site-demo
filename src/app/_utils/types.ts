@@ -4,7 +4,7 @@ export type product_data = {
     category: string,
     manufacturer: string,
     price: number,
-    image_path: string | null,
+    image_path: string,
     stock: number,
     description: string | null,
     created_at: string,
@@ -14,6 +14,6 @@ export type product_data = {
 export type cart_data = {
     name : string,
     price : number,
-    image_path : string | null
+    image_path : string,
     count : number,
 }

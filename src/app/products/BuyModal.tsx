@@ -8,7 +8,7 @@ type Props = {
     disc : string | null,
     stock  : number,
     price: number,
-    image_path: string | null,
+    image_path: string,
     toggleModal : () => void,
     update_data: (index: number, stock: number) => void,
 }
