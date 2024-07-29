@@ -44,7 +44,7 @@ const CartTable: React.FC<Props> = ({ data }) => {
                     <td className=" px-4 py-2 sticky left-0 z-[2] bg-slate-100 border ">
                         {res.name}
                     </td>
-                    <td><img src={res.image_path} alt="" className="h-[150px]" /></td>
+                    <td className="flex justify-center"><img src={res.image_path} alt="" className="h-[150px]" /></td>
                     <td className=" px-4 py-2 border ">{res.count}</td>
                     <td className=" px-4 py-2 border ">{res.price}</td>
                 </tr>
@@ -55,8 +55,8 @@ const CartTable: React.FC<Props> = ({ data }) => {
         
         { total > 0 ? 
         <>
-            <h1 className="text-2xl p-6 text-center"> 商品 : {total} 円</h1>
-            <h1 className="text-2xl p-6 text-center"> 配送料 : 660 円</h1>
+            <h1 className="text-2xl pt-6 text-center"> 商品 : {total} 円</h1>
+            <h1 className="text-2xl text-center"> 配送料 : 660 円</h1>
             <hr />
             <h1 className="text-3xl p-6 text-center"> 合計 : {total + 660} 円</h1>
             <div className="flex justify-center m-3">

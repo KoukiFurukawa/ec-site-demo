@@ -52,7 +52,7 @@ const StandardTable: React.FC<Props> = ({ data, update_productData }) => {
                     <td className=" px-4 py-2 sticky left-0 z-[2] bg-slate-100 border ">
                         {res.ID}
                     </td>
-                    <td><img src={res.image_path} alt="" className="h-[150px]" /></td>
+                    <td className="flex justify-center"><img src={res.image_path} alt="" className="h-[150px]" /></td>
                     <td className=" px-4 py-2 border ">{res.name}</td>
                     <td className=" px-4 py-2 border ">{res.category}</td>
                     <td className=" px-4 py-2 border ">{res.manufacturer}</td>
