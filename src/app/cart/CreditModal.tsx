@@ -5,9 +5,10 @@ import Swal from 'sweetalert2'
 
 type Props = {
     toggleModal : () => void,
+    after_pay : () => void
 }
 
-const CreditModal: React.FC<Props> = ({toggleModal}) => {
+const CreditModal: React.FC<Props> = ({toggleModal, after_pay}) => {
 
     const sendCreditInfo = async () => {
         DeleteCookies();
@@ -25,7 +26,9 @@ const CreditModal: React.FC<Props> = ({toggleModal}) => {
             title: "購入完了",
             icon: "success"
         })
-        window.location.reload()
+        toggleModal();
+        after_pay();
+        // window.location.reload()
     }
 
     return (

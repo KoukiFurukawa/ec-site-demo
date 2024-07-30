@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useState} from "react";
 import { product_data } from "../_utils/types";
+import Swal from "sweetalert2";
 
 import BuyModal from "./BuyModal";
 
@@ -59,13 +60,24 @@ const StandardTable: React.FC<Props> = ({ data, update_productData }) => {
                     <td className=" px-4 py-2 border ">{res.price}</td>
                     <td className=" px-4 py-2 border ">{res.stock}</td>
                     <td className=" px-4 py-2 border "><button onClick={() => {
-                        setName(res.name)
-                        setDisc(res.description)
-                        setPrice(res.price)
-                        setStock(res.stock)
-                        setImagePath(res.image_path)
-                        setIndex(res.ID - 1)
-                        toggleModal()
+                        if (res.stock == 0)
+                        {
+                            Swal.fire({
+                                title: "在庫がありません",
+                                icon : "error"
+                            })
+                        }
+                        else
+                        {
+                            setName(res.name)
+                            setDisc(res.description)
+                            setPrice(res.price)
+                            setStock(res.stock)
+                            setImagePath(res.image_path)
+                            setIndex(res.ID - 1)
+                            toggleModal()
+                        }
+                        
                     }}>カートに追加</button></td>
                 </tr>
                 );

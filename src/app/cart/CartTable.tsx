@@ -11,19 +11,26 @@ type Props = {
 const CartTable: React.FC<Props> = ({ data }) => {
 
     const [isShow, setIsShow] = useState<boolean>(false);
-    const [name, setName] = useState<string>("")
-    const [disc, setDisc] = useState<string | null>("")
-    const [price, setPrice] = useState<number>(0)
-    const [stock, setStock] = useState<number>(-1)
-    const [imagePath, setImagePath] = useState<string | null>(null);
-    const [index, setIndex] = useState<number>(-1)
-
-    const total = data.reduce((acc, current) => acc + current.price, 0)
+    const [cartData, setData] = useState<cart_data[]>(data);
+    const [total, setTotal] = useState<number>(data.reduce((acc, current) => acc + current.price, 0))
 
     const toggleModal = () => {
         if (isShow) { setIsShow(false) }
         else { setIsShow(true) }
     }
+
+    const after_pay = () => {
+        setTotal(0)
+        setData([])
+    }
+
+    useEffect(() => {
+        setTotal(cartData.reduce((acc, current) => acc + current.price, 0))
+    },[cartData])
+
+    useEffect(() => {
+        setData(data)
+    }, [data])
 
     return (
     <div className="pt-16">
@@ -38,7 +45,7 @@ const CartTable: React.FC<Props> = ({ data }) => {
             </tr>
             </thead>
             <tbody>
-            {data.map((res, i) => {
+            {cartData.map((res, i) => {
                 return (
                 <tr key={i}>
                     <td className=" px-4 py-2 sticky left-0 z-[2] bg-slate-100 border ">
@@ -67,7 +74,7 @@ const CartTable: React.FC<Props> = ({ data }) => {
             <h1 className="text-center p-6"><a href="/products" className="text-3xl">買い物をする</a></h1>
         }
     </div>
-    { isShow && <CreditModal toggleModal={toggleModal} />}
+    { isShow && <CreditModal toggleModal={toggleModal} after_pay={after_pay} />}
     </div>
     )
 }
