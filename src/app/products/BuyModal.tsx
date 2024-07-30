@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { AddProduct } from '../_lib/cookie'
 import { cart_data } from '../_utils/types'
+import Swal from 'sweetalert2'
 
 type Props = {
     index: number
@@ -27,6 +28,21 @@ const BuyModal: React.FC<Props> = ({index, name, disc, stock, price, image_path,
         await AddProduct(add_data)
         update_data(index, stock - count)
         toggleModal()
+    }
+
+
+    const add_count = () => {
+        if (count + 1 <= stock)
+        {
+            setCount(count + 1)
+        }
+        else
+        {
+            Swal.fire({
+                title : "在庫が足りません",
+                icon : "error"
+            })
+        }
     }
 
     return (
@@ -62,7 +78,7 @@ const BuyModal: React.FC<Props> = ({index, name, disc, stock, price, image_path,
                         }
                             <h1 className='text-3xl'>{ count }</h1>
                             <div className='p-2 ml-4'>
-                                <button onClick={() => setCount(count + 1 <= stock ? count+1 : stock)} className='text-2xl'> + </button>
+                                <button onClick={() => add_count()} className='text-2xl'> + </button>
                             </div>
                         </div>
                         <div className='text-3xl ml-[auto] mr-[20%]'>
